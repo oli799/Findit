@@ -19,6 +19,9 @@ import static android.R.layout.simple_spinner_dropdown_item;
 public class findActivity extends AppCompatActivity {
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +32,27 @@ public class findActivity extends AppCompatActivity {
 
         Spinner spinner_county = (Spinner) findViewById(R.id.spinner_country);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.countries, android.R.layout.simple_spinner_item);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Locale[] locates = Locale.getAvailableLocales();
+        ArrayList<String> countries = new ArrayList<String>();
+        for (Locale locale : locates) {
+            String country = locale.getDisplayCountry();
+            if (country.trim().length() > 0 && !countries.contains(country)) {
+                countries.add(country);
+            }
+        }
 
+        Collections.sort(countries);
+        for (String country : countries) {
+            System.out.println(country);
+        }
 
-        spinner_county.setAdapter(adapter);
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, countries);
+
+        countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the your spinner
+        spinner_county.setAdapter(countryAdapter);
 
 
 
