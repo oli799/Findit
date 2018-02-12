@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Findit</string>
+
+    //MainActivity
+    <string name="main_lostButton_text">I am lost it</string>
+    <string name="main_findButton_text">I am find it </string>
+    <string name="heading">Find It</string>
+
+    //lostActivity
+
+
+    //findActivity
+    <string name="title">Where and What you find?</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="description">Write a little description about what you find</string>
+    <string name="contact">Your contact details</string>
+
+
+</resources>
