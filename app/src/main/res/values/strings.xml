@@ -7,6 +7,7 @@
     <string name="heading">Find It</string>
 
     //lostActivity
+    //lostActivity
 
 
     //findActivity
@@ -15,6 +16,8 @@
     <string name="city">City</string>
     <string name="description">Write a little description about what you find</string>
     <string name="contact">Your contact details</string>
+    <string name="button">Send</string>
+    //findActivity
 
 
 </resources>

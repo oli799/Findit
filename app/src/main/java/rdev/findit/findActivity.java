@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,9 +30,17 @@ import java.util.List;
 
 public class findActivity extends AppCompatActivity {
 
+    private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
+
+
     private Spinner spinner_country;
     private Spinner spinner_city;
+    private Button button_send;
+    private EditText edittext_desc;
+    private EditText edittrex_contact;
     private List<String> spinnerArray;
+
+
 
 
 
@@ -44,6 +53,10 @@ public class findActivity extends AppCompatActivity {
 
         spinner_country = (Spinner) findViewById(R.id.spinner_country);
         spinner_city = (Spinner) findViewById(R.id.spinner_city);
+        button_send =(Button) findViewById(R.id.button_Send);
+        edittext_desc = (EditText) findViewById(R.id.editText_Description);
+        edittrex_contact = (EditText) findViewById(R.id.editText_Contact);
+
 
 
 
@@ -61,12 +74,14 @@ public class findActivity extends AppCompatActivity {
         //SPINNER_COUNTRY_ADAPTER_FELTÖLTÉSE
 
 
+
+
         //SPINNER_COUNTRY_ADAPTER_KIVÁLASZTÁS_ÉRZÉKELÉS_ÉS_ASYNC_MEGHÍVÁSA
 
         spinner_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                new JSONTask().execute("https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json");
+                new JSONTask().execute(URL);
             }
 
             @Override
@@ -170,10 +185,6 @@ public class findActivity extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             spinner_city.setAdapter(adapter);
-
-
-
-
 
 
         }
