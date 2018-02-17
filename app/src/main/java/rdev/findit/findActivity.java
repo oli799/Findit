@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -44,10 +45,15 @@ public class findActivity extends AppCompatActivity {
 
 
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
+
 
 
 
@@ -96,12 +102,21 @@ public class findActivity extends AppCompatActivity {
 
 
 
+
+
+
+
     }
 
     public class  JSONTask extends AsyncTask<String, String, List<String>> {
 
+
+
+
         @Override
         protected List<String> doInBackground(String... urls) {
+
+
 
 
             HttpURLConnection connection = null;
