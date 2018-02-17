@@ -3,18 +3,18 @@ package rdev.findit;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +30,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class findActivity extends AppCompatActivity {
 
     private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
@@ -43,15 +44,11 @@ public class findActivity extends AppCompatActivity {
     private EditText edittrex_contact;
     private List<String> spinnerArray;
 
-    //FIREBASE VALTOZÓK
-
-    private String Country;
-    private String City;
-    private String Desc;
-    private String Contact;
+    private DatabaseReference mDatabaseReference;
 
 
 
+    //VÁLTOZÓK
 
 
 
@@ -105,6 +102,20 @@ public class findActivity extends AppCompatActivity {
 
         //SPINNER_COUNTRY_ADAPTER_KIVÁLASZTÁS_ÉRZÉKELÉS_ÉS_ASYNC_MEGHÍVÁSA
 
+
+        //GOMBNYOMÁSRA AZ ADAT FELTÉTELE FIREBASE-BA
+
+
+        button_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dataUpload();
+
+            }
+        });
+
+        //GOMBNYOMÁSRA AZ ADAT FELTÉTELE FIREBASE-BA
 
 
 
@@ -222,6 +233,25 @@ public class findActivity extends AppCompatActivity {
 
 
         }
+
+    }
+
+
+    public void dataUpload(){
+
+        DataModel model = new DataModel();
+
+        model.setCountry(spinner_country.getSelectedItem().toString());
+        model.setCity(spinner_city.getSelectedItem().toString());
+        model.setDesc(edittext_desc.getText().toString());
+        model.setContact(edittrex_contact.getText().toString());
+
+
+
+
+
+
+
 
     }
 
