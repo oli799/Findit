@@ -1,5 +1,6 @@
 package rdev.findit;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -110,8 +111,16 @@ public class findActivity extends AppCompatActivity {
 
     public class  JSONTask extends AsyncTask<String, String, List<String>> {
 
+        private ProgressDialog dialog = new ProgressDialog(findActivity.this);
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
+            this.dialog.setMessage("please wait..");
+            this.dialog.show();
+
+        }
 
         @Override
         protected List<String> doInBackground(String... urls) {
@@ -200,6 +209,10 @@ public class findActivity extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             spinner_city.setAdapter(adapter);
+
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
 
 
         }
