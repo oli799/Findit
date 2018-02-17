@@ -17,7 +17,9 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="rdev.findit.lostActivity">
+                tools:context="rdev.findit.lostActivity"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
 
                 <TextView
@@ -100,8 +102,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView_Description"
                     android:layout_marginLeft="16dp"
                     android:inputType="none"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
+                    android:nextFocusUp="@id/editText_Description"
+                    android:nextFocusLeft="@id/editText_Description"
                     />
 
                 <TextView
@@ -125,8 +127,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_contact"
                     android:layout_marginLeft="16dp"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"/>
+                    android:nextFocusUp="@id/editText_Contact"
+                    android:nextFocusLeft="@id/editText_Contact"/>
 
                 <Button
                     android:id="@+id/button_Send"
