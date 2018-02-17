@@ -34,6 +34,7 @@ public class findActivity extends AppCompatActivity {
 
     private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
 
+    //VÁLTOZÓK
 
     private Spinner spinner_country;
     private Spinner spinner_city;
@@ -42,7 +43,12 @@ public class findActivity extends AppCompatActivity {
     private EditText edittrex_contact;
     private List<String> spinnerArray;
 
+    //FIREBASE VALTOZÓK
 
+    private String Country;
+    private String City;
+    private String Desc;
+    private String Contact;
 
 
 
