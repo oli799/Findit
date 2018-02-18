@@ -17,6 +17,10 @@
     <string name="description">Write a little description about what you find</string>
     <string name="contact">Your contact details</string>
     <string name="button">Send</string>
+
+    <string name="toast_desc_text">You need to write something in the description field!</string>
+    <string name="toast_contact_text">You need to write something in the contact field!</string>
+    <string name="toast_upploaded_text">Your post is shared successfully!</string>
     //findActivity
 
 

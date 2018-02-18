@@ -101,7 +101,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_Description"
                     android:layout_marginLeft="16dp"
-                    android:inputType="none"
+                    android:inputType="text"
                     android:nextFocusUp="@id/editText_Description"
                     android:nextFocusLeft="@id/editText_Description"
                     />

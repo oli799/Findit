@@ -2,9 +2,11 @@ package rdev.findit;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -43,8 +47,9 @@ public class findActivity extends AppCompatActivity {
     private EditText edittext_desc;
     private EditText edittrex_contact;
     private List<String> spinnerArray;
-
     private DatabaseReference mDatabaseReference;
+
+
 
 
 
@@ -66,6 +71,9 @@ public class findActivity extends AppCompatActivity {
         button_send =(Button) findViewById(R.id.button_Send);
         edittext_desc = (EditText) findViewById(R.id.editText_Description);
         edittrex_contact = (EditText) findViewById(R.id.editText_Contact);
+
+
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("posts");
 
 
 
@@ -116,10 +124,6 @@ public class findActivity extends AppCompatActivity {
         });
 
         //GOMBNYOMÁSRA AZ ADAT FELTÉTELE FIREBASE-BA
-
-
-
-
 
 
 
@@ -239,12 +243,33 @@ public class findActivity extends AppCompatActivity {
 
     public void dataUpload(){
 
-        DataModel model = new DataModel();
+        String country = spinner_country.getSelectedItem().toString();
+        String city = spinner_city.getSelectedItem().toString();
+        String desc = edittext_desc.getText().toString();
+        String contact = edittrex_contact.getText().toString();
 
-        model.setCountry(spinner_country.getSelectedItem().toString());
-        model.setCity(spinner_city.getSelectedItem().toString());
-        model.setDesc(edittext_desc.getText().toString());
-        model.setContact(edittrex_contact.getText().toString());
+
+
+        if(TextUtils.isEmpty(desc)){
+
+            Toast.makeText(this,getString(R.string.toast_desc_text),Toast.LENGTH_SHORT).show();
+
+        }else if(TextUtils.isEmpty(contact)){
+            Toast.makeText(this,getString(R.string.toast_contact_text),Toast.LENGTH_SHORT).show();
+        }else {
+
+            String id = mDatabaseReference.push().getKey();
+
+            DataModel data = new DataModel(id,country,city,desc,contact);
+
+            mDatabaseReference.child(id).setValue(data);
+
+            Toast.makeText(this,getString(R.string.toast_upploaded_text),Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+
+        }
 
 
 
