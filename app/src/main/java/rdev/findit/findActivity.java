@@ -248,14 +248,18 @@ public class findActivity extends AppCompatActivity {
         String desc = edittext_desc.getText().toString();
         String contact = edittrex_contact.getText().toString();
 
-        if(contact.equals("")){
+
+
+        if(TextUtils.isEmpty(desc)){
+
+            Toast.makeText(this,getString(R.string.toast_desc_text),Toast.LENGTH_SHORT).show();
+
+
+        }else if(TextUtils.isEmpty(contact)){
+
             Toast.makeText(this,getString(R.string.toast_contact_text),Toast.LENGTH_SHORT).show();
-        }
 
-
-
-        if(!TextUtils.isEmpty(desc)){
-
+        }else {
 
             String id = mDatabaseReference.push().getKey();
 
@@ -268,15 +272,7 @@ public class findActivity extends AppCompatActivity {
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
 
-        }else{
-
-            Toast.makeText(this,getString(R.string.toast_desc_text),Toast.LENGTH_SHORT).show();
-
         }
-
-
-
-
 
 
 
