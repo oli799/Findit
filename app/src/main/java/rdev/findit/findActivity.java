@@ -186,8 +186,6 @@ public class findActivity extends AppCompatActivity {
         //GOMBNYOMÁSRA AZ ADAT KIVÁLASZTÁSA
 
 
-
-
     }
 
 
@@ -299,7 +297,6 @@ public class findActivity extends AppCompatActivity {
 
 
     }
-
 
     public class JSONTaskCity extends AsyncTask<String, String, List<String>> {
 
@@ -425,43 +422,6 @@ public class findActivity extends AppCompatActivity {
 
     }
 
-
-    public void dataUpload() {
-
-        String country = spinner_country.getSelectedItem().toString();
-        String city = spinner_city.getSelectedItem().toString();
-        String desc = edittext_desc.getText().toString();
-        String contact = edittrex_contact.getText().toString();
-
-
-        if (TextUtils.isEmpty(desc)) {
-
-            Toast.makeText(this, getString(R.string.toast_desc_text), Toast.LENGTH_SHORT).show();
-
-
-        } else if (TextUtils.isEmpty(contact)) {
-
-            Toast.makeText(this, getString(R.string.toast_contact_text), Toast.LENGTH_SHORT).show();
-
-        } else {
-
-            String id = mDatabaseReference.push().getKey();
-
-            DataModel data = new DataModel(id, country, city, desc, contact);
-
-            mDatabaseReference.child(id).setValue(data);
-
-            Toast.makeText(this, getString(R.string.toast_upploaded_text), Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-
-        }
-
-
-    }
-
-
     public static class InternetStatus {
 
         //INERNET_ELLENORZES
@@ -501,18 +461,53 @@ public class findActivity extends AppCompatActivity {
         //INERNET_ELLENORZES
     }
 
-    private void chooseImage(){
+    public void dataUpload() {
+
+        String country = spinner_country.getSelectedItem().toString();
+        String city = spinner_city.getSelectedItem().toString();
+        String desc = edittext_desc.getText().toString();
+        String contact = edittrex_contact.getText().toString();
+
+
+        if (TextUtils.isEmpty(desc)) {
+
+            Toast.makeText(this, getString(R.string.toast_desc_text), Toast.LENGTH_SHORT).show();
+
+
+        } else if (TextUtils.isEmpty(contact)) {
+
+            Toast.makeText(this, getString(R.string.toast_contact_text), Toast.LENGTH_SHORT).show();
+
+        } else {
+
+            String id = mDatabaseReference.push().getKey();
+
+            DataModel data = new DataModel(id, country, city, desc, contact);
+
+            mDatabaseReference.child(id).setValue(data);
+
+            Toast.makeText(this, getString(R.string.toast_upploaded_text), Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
+        }
+
+
+    }
+
+    private void chooseImage() {
 
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,GALERY_INTENT);
+        startActivityForResult(intent, GALERY_INTENT);
 
     }
 
-    private void uploadImage(){
+    private void uploadImage() {
 
-        if(filePath != null){
+        if (filePath != null) {
 
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
@@ -532,7 +527,7 @@ public class findActivity extends AppCompatActivity {
                 public void onFailure(@NonNull Exception e) {
 
                     progressDialog.dismiss();
-                    Log.d("Image","Problem with image Upload!" + e.getMessage());
+                    Log.d("Image", "Problem with image Upload!" + e.getMessage());
 
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -540,9 +535,9 @@ public class findActivity extends AppCompatActivity {
                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
 
 
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
 
-                    progressDialog.setMessage("Shared" +(int)progress + "%");
+                    progressDialog.setMessage("Shared" + (int) progress + "%");
 
                 }
             });
@@ -555,21 +550,19 @@ public class findActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == GALERY_INTENT && resultCode == RESULT_OK
-                && data != null && data.getData() != null){
+        if (requestCode == GALERY_INTENT && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
 
 
-           try {
-               filePath = data.getData();
-           }catch (Exception e){
-               e.printStackTrace();
-           }
+            try {
+                filePath = data.getData();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
 
     }
-
-
 
 
 }
