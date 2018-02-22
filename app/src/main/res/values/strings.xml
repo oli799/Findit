@@ -21,6 +21,9 @@
     <string name="toast_desc_text">You need to write something in the description field!</string>
     <string name="toast_contact_text">You need to write something in the contact field!</string>
     <string name="toast_upploaded_text">Your post is shared successfully!</string>
+
+    <string name="toast_no_internet_connected">"Oops! No WiFi/Mobile Networks Connected!"</string>
+    <string name="toast_connect_to_internet">Please connect your device to the internet!</string>
     //findActivity
 
 

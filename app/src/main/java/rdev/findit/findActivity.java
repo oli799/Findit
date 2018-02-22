@@ -1,8 +1,11 @@
 package rdev.findit;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 public class findActivity extends AppCompatActivity {
 
     private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
@@ -51,8 +56,6 @@ public class findActivity extends AppCompatActivity {
 
 
 
-
-
     //VÁLTOZÓK
 
 
@@ -62,6 +65,8 @@ public class findActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
+
+
 
 
 
@@ -96,17 +101,30 @@ public class findActivity extends AppCompatActivity {
 
         //SPINNER_COUNTRY_ADAPTER_KIVÁLASZTÁS_ÉRZÉKELÉS_ÉS_ASYNC_MEGHÍVÁSA
 
-        spinner_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                new JSONTask().execute(URL);
-            }
+        if(InternetStatus.getInstance(getApplicationContext()).isOnline()){
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            spinner_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    new JSONTask().execute(URL);
+                }
 
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+        }else{
+
+            Toast.makeText(getApplicationContext(),getString(R.string.toast_no_internet_connected),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.toast_connect_to_internet),Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+
+        }
+
+
 
         //SPINNER_COUNTRY_ADAPTER_KIVÁLASZTÁS_ÉRZÉKELÉS_ÉS_ASYNC_MEGHÍVÁSA
 
@@ -118,7 +136,23 @@ public class findActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                dataUpload();
+
+                if(InternetStatus.getInstance(getApplicationContext()).isOnline()){
+
+                    dataUpload();
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),getString(R.string.toast_no_internet_connected),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),getString(R.string.toast_connect_to_internet),Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(intent);
+
+
+
+                }
+
+
 
             }
         });
@@ -277,6 +311,46 @@ public class findActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    public static class InternetStatus{
+
+        //INERNET_ELLENORZES
+
+        static Context context;
+
+        private static InternetStatus instance = new InternetStatus();
+        ConnectivityManager connectivityManager;
+        NetworkInfo wifiInfo, mobileInfo;
+        boolean connected = false;
+
+        public static InternetStatus getInstance(Context ctx){
+            context = ctx.getApplicationContext();
+            return instance;
+        }
+
+        @SuppressLint("ServiceCast")
+        public boolean isOnline(){
+            try {
+
+                connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                connected = networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected();
+
+                return connected;
+
+            }catch (Exception e){
+
+                Log.d("connect",e.toString());
+
+            }
+            return connected;
+        }
+
+
+        //INERNET_ELLENORZES
     }
 
 
