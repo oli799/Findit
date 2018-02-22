@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 
@@ -35,6 +36,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -52,8 +54,8 @@ public class findActivity extends AppCompatActivity {
     private EditText edittext_desc;
     private EditText edittrex_contact;
     private List<String> spinnerArray;
+    private List<String> spinnerCounryArray;
     private DatabaseReference mDatabaseReference;
-
 
 
     //VÁLTOZÓK
@@ -65,9 +67,6 @@ public class findActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
-
-
-
 
 
 
@@ -86,12 +85,8 @@ public class findActivity extends AppCompatActivity {
         //SPINNER_COUNTRY_ADAPTER_FELTÖLTÉSE
 
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.countries,
-                android.R.layout.simple_spinner_dropdown_item);
+        new JSONTaskCountry().execute(URL);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner_country.setAdapter(adapter);
 
 
         //SPINNER_COUNTRY_ADAPTER_FELTÖLTÉSE
@@ -106,7 +101,7 @@ public class findActivity extends AppCompatActivity {
             spinner_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    new JSONTask().execute(URL);
+                    new JSONTaskCity().execute(URL);
                 }
 
                 @Override
@@ -164,7 +159,118 @@ public class findActivity extends AppCompatActivity {
 
     }
 
-    public class  JSONTask extends AsyncTask<String, String, List<String>> {
+    public class  JSONTaskCountry extends AsyncTask<String, String, List<String>> {
+
+        private ProgressDialog dialog = new ProgressDialog(findActivity.this);
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            this.dialog.setMessage("please wait..");
+            this.dialog.show();
+
+        }
+
+        @Override
+        protected List<String> doInBackground(String... urls) {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+            try {
+                URL url = new URL(urls[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                InputStream stream = connection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(stream));
+                StringBuffer buffer = new StringBuffer();
+
+
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+
+                    buffer.append(line);
+
+                }
+
+
+                String finalJshon = buffer.toString();
+                JSONObject parentObj = new JSONObject(finalJshon);
+
+                //GET_JSON_OBJECT_NAMES
+
+                spinnerCounryArray = new ArrayList<String>();
+
+
+                Iterator<String> iter = parentObj.keys();
+                while (iter.hasNext()){
+                    spinnerCounryArray.add(iter.next());
+
+                }
+
+                //GET_JSON_OBJECT_NAMES
+
+
+
+                return spinnerCounryArray;
+
+
+            } catch (MalformedURLException e) {
+                Log.e("Jshon", "Url is not OK!");
+                e.printStackTrace();
+            } catch (IOException e) {
+                Log.e("Jshon", "Connection is not OK!");
+                e.printStackTrace();
+            } catch (JSONException e) {
+                Log.e("Jshon", "Array name is not OK!");
+                e.printStackTrace();
+            } finally {
+
+                if (connection != null) {
+                    connection.disconnect();
+                }
+
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+
+                } catch (IOException e) {
+                    Log.e("Jshon", "Disconnect is not OK!");
+                    e.printStackTrace();
+                }
+
+            }
+
+            return null;
+
+        }
+
+        protected void onPostExecute(List<String> result) {
+            super.onPostExecute(result);
+
+            Context context = findActivity.this;
+
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    context, android.R.layout.simple_spinner_item, result);
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            spinner_country.setAdapter(adapter);
+
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
+        }
+
+
+    }
+
+
+    public class  JSONTaskCity extends AsyncTask<String, String, List<String>> {
 
         private ProgressDialog dialog = new ProgressDialog(findActivity.this);
 
@@ -203,10 +309,28 @@ public class findActivity extends AppCompatActivity {
 
                 }
 
-                String finalJshon = buffer.toString();
 
+                String finalJshon = buffer.toString();
                 JSONObject parentObj = new JSONObject(finalJshon);
+
+                //GET_JSON_OBJECT_NAMES
+
+                spinnerCounryArray = new ArrayList<String>();
+
+
+                Iterator<String> iter = parentObj.keys();
+                while (iter.hasNext()){
+                    spinnerCounryArray.add(iter.next());
+
+                }
+
+                //GET_JSON_OBJECT_NAMES
+
+
+
                 JSONArray parentArray = parentObj.getJSONArray(spinner_country.getSelectedItem().toString());
+
+
 
                 spinnerArray = new ArrayList<String>();
 
@@ -256,6 +380,7 @@ public class findActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             Context context = findActivity.this;
+
 
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(
