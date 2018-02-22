@@ -4,10 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,13 +20,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,22 +51,27 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 
 public class findActivity extends AppCompatActivity {
 
     private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
+    private static final int GALERY_INTENT = 5;
 
     //VÁLTOZÓK
 
     private Spinner spinner_country;
     private Spinner spinner_city;
     private Button button_send;
+    private Button button_photo_upload;
     private EditText edittext_desc;
     private EditText edittrex_contact;
     private List<String> spinnerArray;
     private List<String> spinnerCounryArray;
     private DatabaseReference mDatabaseReference;
+    private StorageReference mStorageReference;
+    private Uri filePath;
 
 
     //VÁLTOZÓK
@@ -68,11 +86,13 @@ public class findActivity extends AppCompatActivity {
         spinner_country = (Spinner) findViewById(R.id.spinner_country);
         spinner_city = (Spinner) findViewById(R.id.spinner_city);
         button_send = (Button) findViewById(R.id.button_Send);
+        button_photo_upload = (Button) findViewById(R.id.button_select_image);
         edittext_desc = (EditText) findViewById(R.id.editText_Description);
         edittrex_contact = (EditText) findViewById(R.id.editText_Contact);
 
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("posts");
+        mStorageReference = FirebaseStorage.getInstance().getReference();
 
 
         //SPINNER_COUNTRY_ADAPTER_FELTÖLTÉSE
@@ -132,7 +152,9 @@ public class findActivity extends AppCompatActivity {
 
                 if (InternetStatus.getInstance(getApplicationContext()).isOnline()) {
 
+                    uploadImage();
                     dataUpload();
+
 
                 } else {
 
@@ -148,10 +170,26 @@ public class findActivity extends AppCompatActivity {
             }
         });
 
-        //GOMBNYOMÁSRA AZ ADAT FELTÉTELE FIREBASE-BA
+        //GOMBNYOMÁSRA AZ ADAT KIVÁLASZTÁSA
+
+
+        button_photo_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                chooseImage();
+
+            }
+        });
+
+
+        //GOMBNYOMÁSRA AZ ADAT KIVÁLASZTÁSA
+
+
 
 
     }
+
 
     public class JSONTaskCountry extends AsyncTask<String, String, List<String>> {
 
@@ -462,6 +500,76 @@ public class findActivity extends AppCompatActivity {
 
         //INERNET_ELLENORZES
     }
+
+    private void chooseImage(){
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,GALERY_INTENT);
+
+    }
+
+    private void uploadImage(){
+
+        if(filePath != null){
+
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            StorageReference ref = mStorageReference.child("images/" + UUID.randomUUID().toString());
+            ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    progressDialog.dismiss();
+
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    progressDialog.dismiss();
+                    Log.d("Image","Problem with image Upload!" + e.getMessage());
+
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+
+                    progressDialog.setMessage("Shared" +(int)progress + "%");
+
+                }
+            });
+
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == GALERY_INTENT && resultCode == RESULT_OK
+                && data != null && data.getData() != null){
+
+
+           try {
+               filePath = data.getData();
+           }catch (Exception e){
+               e.printStackTrace();
+           }
+
+        }
+
+    }
+
+
 
 
 }

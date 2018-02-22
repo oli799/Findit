@@ -136,11 +136,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText_Contact"/>
+                    app:layout_constraintTop_toBottomOf="@+id/button_select_image"/>
+
+                <Button
+                    android:id="@+id/button_select_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_Contact"
+                    android:layout_marginLeft="16dp"/>
 
 
             </android.support.constraint.ConstraintLayout>
