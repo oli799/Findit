@@ -40,8 +40,6 @@ import java.util.Iterator;
 import java.util.List;
 
 
-
-
 public class findActivity extends AppCompatActivity {
 
     private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
@@ -61,18 +59,15 @@ public class findActivity extends AppCompatActivity {
     //VÁLTOZÓK
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
 
 
-
         spinner_country = (Spinner) findViewById(R.id.spinner_country);
         spinner_city = (Spinner) findViewById(R.id.spinner_city);
-        button_send =(Button) findViewById(R.id.button_Send);
+        button_send = (Button) findViewById(R.id.button_Send);
         edittext_desc = (EditText) findViewById(R.id.editText_Description);
         edittrex_contact = (EditText) findViewById(R.id.editText_Contact);
 
@@ -80,23 +75,27 @@ public class findActivity extends AppCompatActivity {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("posts");
 
 
-
-
         //SPINNER_COUNTRY_ADAPTER_FELTÖLTÉSE
 
+        if (InternetStatus.getInstance(getApplicationContext()).isOnline()) {
 
-        new JSONTaskCountry().execute(URL);
+            new JSONTaskCountry().execute(URL);
 
+        } else {
 
+            Toast.makeText(getApplicationContext(), getString(R.string.toast_no_internet_connected), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.toast_connect_to_internet), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+
+        }
 
         //SPINNER_COUNTRY_ADAPTER_FELTÖLTÉSE
-
-
 
 
         //SPINNER_COUNTRY_ADAPTER_KIVÁLASZTÁS_ÉRZÉKELÉS_ÉS_ASYNC_MEGHÍVÁSA
 
-        if(InternetStatus.getInstance(getApplicationContext()).isOnline()){
+        if (InternetStatus.getInstance(getApplicationContext()).isOnline()) {
 
             spinner_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -110,15 +109,14 @@ public class findActivity extends AppCompatActivity {
                 }
             });
 
-        }else{
+        } else {
 
-            Toast.makeText(getApplicationContext(),getString(R.string.toast_no_internet_connected),Toast.LENGTH_LONG).show();
-            Toast.makeText(getApplicationContext(),getString(R.string.toast_connect_to_internet),Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Toast.makeText(getApplicationContext(), getString(R.string.toast_no_internet_connected), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.toast_connect_to_internet), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
 
         }
-
 
 
         //SPINNER_COUNTRY_ADAPTER_KIVÁLASZTÁS_ÉRZÉKELÉS_ÉS_ASYNC_MEGHÍVÁSA
@@ -132,21 +130,19 @@ public class findActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                if(InternetStatus.getInstance(getApplicationContext()).isOnline()){
+                if (InternetStatus.getInstance(getApplicationContext()).isOnline()) {
 
                     dataUpload();
 
-                }else{
+                } else {
 
-                    Toast.makeText(getApplicationContext(),getString(R.string.toast_no_internet_connected),Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(),getString(R.string.toast_connect_to_internet),Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Toast.makeText(getApplicationContext(), getString(R.string.toast_no_internet_connected), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.toast_connect_to_internet), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
 
 
-
                 }
-
 
 
             }
@@ -155,11 +151,9 @@ public class findActivity extends AppCompatActivity {
         //GOMBNYOMÁSRA AZ ADAT FELTÉTELE FIREBASE-BA
 
 
-
-
     }
 
-    public class  JSONTaskCountry extends AsyncTask<String, String, List<String>> {
+    public class JSONTaskCountry extends AsyncTask<String, String, List<String>> {
 
         private ProgressDialog dialog = new ProgressDialog(findActivity.this);
 
@@ -205,13 +199,12 @@ public class findActivity extends AppCompatActivity {
 
 
                 Iterator<String> iter = parentObj.keys();
-                while (iter.hasNext()){
+                while (iter.hasNext()) {
                     spinnerCounryArray.add(iter.next());
 
                 }
 
                 //GET_JSON_OBJECT_NAMES
-
 
 
                 return spinnerCounryArray;
@@ -261,7 +254,7 @@ public class findActivity extends AppCompatActivity {
 
             spinner_country.setAdapter(adapter);
 
-            if(dialog.isShowing()){
+            if (dialog.isShowing()) {
                 dialog.dismiss();
             }
         }
@@ -270,7 +263,7 @@ public class findActivity extends AppCompatActivity {
     }
 
 
-    public class  JSONTaskCity extends AsyncTask<String, String, List<String>> {
+    public class JSONTaskCity extends AsyncTask<String, String, List<String>> {
 
         private ProgressDialog dialog = new ProgressDialog(findActivity.this);
 
@@ -285,8 +278,6 @@ public class findActivity extends AppCompatActivity {
 
         @Override
         protected List<String> doInBackground(String... urls) {
-
-
 
 
             HttpURLConnection connection = null;
@@ -319,7 +310,7 @@ public class findActivity extends AppCompatActivity {
 
 
                 Iterator<String> iter = parentObj.keys();
-                while (iter.hasNext()){
+                while (iter.hasNext()) {
                     spinnerCounryArray.add(iter.next());
 
                 }
@@ -327,18 +318,16 @@ public class findActivity extends AppCompatActivity {
                 //GET_JSON_OBJECT_NAMES
 
 
-
                 JSONArray parentArray = parentObj.getJSONArray(spinner_country.getSelectedItem().toString());
-
 
 
                 spinnerArray = new ArrayList<String>();
 
-               if(parentArray != null){
-                   for (int i = 0; i < parentArray.length(); i++){
-                       spinnerArray.add(parentArray.getString(i));
-                   }
-               }
+                if (parentArray != null) {
+                    for (int i = 0; i < parentArray.length(); i++) {
+                        spinnerArray.add(parentArray.getString(i));
+                    }
+                }
 
                 return spinnerArray;
 
@@ -382,7 +371,6 @@ public class findActivity extends AppCompatActivity {
             Context context = findActivity.this;
 
 
-
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                     context, android.R.layout.simple_spinner_item, result);
 
@@ -390,7 +378,7 @@ public class findActivity extends AppCompatActivity {
 
             spinner_city.setAdapter(adapter);
 
-            if(dialog.isShowing()){
+            if (dialog.isShowing()) {
                 dialog.dismiss();
             }
 
@@ -400,7 +388,7 @@ public class findActivity extends AppCompatActivity {
     }
 
 
-    public void dataUpload(){
+    public void dataUpload() {
 
         String country = spinner_country.getSelectedItem().toString();
         String city = spinner_city.getSelectedItem().toString();
@@ -408,38 +396,35 @@ public class findActivity extends AppCompatActivity {
         String contact = edittrex_contact.getText().toString();
 
 
+        if (TextUtils.isEmpty(desc)) {
 
-        if(TextUtils.isEmpty(desc)){
-
-            Toast.makeText(this,getString(R.string.toast_desc_text),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_desc_text), Toast.LENGTH_SHORT).show();
 
 
-        }else if(TextUtils.isEmpty(contact)){
+        } else if (TextUtils.isEmpty(contact)) {
 
-            Toast.makeText(this,getString(R.string.toast_contact_text),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_contact_text), Toast.LENGTH_SHORT).show();
 
-        }else {
+        } else {
 
             String id = mDatabaseReference.push().getKey();
 
-            DataModel data = new DataModel(id,country,city,desc,contact);
+            DataModel data = new DataModel(id, country, city, desc, contact);
 
             mDatabaseReference.child(id).setValue(data);
 
-            Toast.makeText(this,getString(R.string.toast_upploaded_text),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_upploaded_text), Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
         }
 
 
-
-
     }
 
 
-    public static class InternetStatus{
+    public static class InternetStatus {
 
         //INERNET_ELLENORZES
 
@@ -450,13 +435,13 @@ public class findActivity extends AppCompatActivity {
         NetworkInfo wifiInfo, mobileInfo;
         boolean connected = false;
 
-        public static InternetStatus getInstance(Context ctx){
+        public static InternetStatus getInstance(Context ctx) {
             context = ctx.getApplicationContext();
             return instance;
         }
 
         @SuppressLint("ServiceCast")
-        public boolean isOnline(){
+        public boolean isOnline() {
             try {
 
                 connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -466,9 +451,9 @@ public class findActivity extends AppCompatActivity {
 
                 return connected;
 
-            }catch (Exception e){
+            } catch (Exception e) {
 
-                Log.d("connect",e.toString());
+                Log.d("connect", e.toString());
 
             }
             return connected;
