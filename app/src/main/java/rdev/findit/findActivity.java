@@ -154,7 +154,7 @@ public class findActivity extends AppCompatActivity {
 
                 if (InternetStatus.getInstance(getApplicationContext()).isOnline()) {
 
-                   uploadImageAndData();
+                    uploadImageAndData();
 
 
                 } else {
@@ -190,7 +190,7 @@ public class findActivity extends AppCompatActivity {
     }
 
 
-    public class JSONTaskCountry extends AsyncTask<String, String, List<String>> {
+    private class JSONTaskCountry extends AsyncTask<String, String, List<String>> {
 
         private ProgressDialog dialog = new ProgressDialog(findActivity.this);
 
@@ -299,7 +299,7 @@ public class findActivity extends AppCompatActivity {
 
     }
 
-    public class JSONTaskCity extends AsyncTask<String, String, List<String>> {
+    private class JSONTaskCity extends AsyncTask<String, String, List<String>> {
 
         private ProgressDialog dialog = new ProgressDialog(findActivity.this);
 
@@ -474,7 +474,6 @@ public class findActivity extends AppCompatActivity {
     private void uploadImageAndData() {
 
 
-
         if (filePath != null) {
 
             final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -487,19 +486,15 @@ public class findActivity extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
 
-
                     url[0] = taskSnapshot.getDownloadUrl().toString();
 
                     progressDialog.dismiss();
-
-
 
 
                     String country = spinner_country.getSelectedItem().toString();
                     String city = spinner_city.getSelectedItem().toString();
                     String desc = edittext_desc.getText().toString();
                     String contact = edittrex_contact.getText().toString();
-
 
 
                     if (TextUtils.isEmpty(desc)) {
@@ -553,7 +548,7 @@ public class findActivity extends AppCompatActivity {
             });
 
         }
-        
+
 
     }
 

@@ -7,6 +7,8 @@
     <string name="heading">Find It</string>
 
     //lostActivity
+    <string name="title_lost">Please select where you lost it!</string>
+    <string name="text_button_lost" translatable="false">OK!</string>
     //lostActivity
 
 
