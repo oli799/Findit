@@ -12,6 +12,7 @@ public class DataModel {
     private String Desc;
     private String Contact;
 
+
     public DataModel() {
     }
 
@@ -21,6 +22,7 @@ public class DataModel {
         City = city;
         Desc = desc;
         Contact = contact;
+
     }
 
 

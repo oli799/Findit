@@ -59,6 +59,7 @@ public class findActivity extends AppCompatActivity {
     private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
     private static final int GALERY_INTENT = 5;
 
+
     //VÁLTOZÓK
 
     private Spinner spinner_country;
@@ -72,6 +73,7 @@ public class findActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
     private StorageReference mStorageReference;
     private Uri filePath;
+    private String[] url = new String[1];
 
 
     //VÁLTOZÓK
@@ -152,8 +154,7 @@ public class findActivity extends AppCompatActivity {
 
                 if (InternetStatus.getInstance(getApplicationContext()).isOnline()) {
 
-                    uploadImage();
-                    dataUpload();
+                   uploadImageAndData();
 
 
                 } else {
@@ -461,41 +462,6 @@ public class findActivity extends AppCompatActivity {
         //INERNET_ELLENORZES
     }
 
-    public void dataUpload() {
-
-        String country = spinner_country.getSelectedItem().toString();
-        String city = spinner_city.getSelectedItem().toString();
-        String desc = edittext_desc.getText().toString();
-        String contact = edittrex_contact.getText().toString();
-
-
-        if (TextUtils.isEmpty(desc)) {
-
-            Toast.makeText(this, getString(R.string.toast_desc_text), Toast.LENGTH_SHORT).show();
-
-
-        } else if (TextUtils.isEmpty(contact)) {
-
-            Toast.makeText(this, getString(R.string.toast_contact_text), Toast.LENGTH_SHORT).show();
-
-        } else {
-
-            String id = mDatabaseReference.push().getKey();
-
-            DataModel data = new DataModel(id, country, city, desc, contact);
-
-            mDatabaseReference.child(id).setValue(data);
-
-            Toast.makeText(this, getString(R.string.toast_upploaded_text), Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-
-        }
-
-
-    }
-
     private void chooseImage() {
 
         Intent intent = new Intent();
@@ -505,12 +471,14 @@ public class findActivity extends AppCompatActivity {
 
     }
 
-    private void uploadImage() {
+    private void uploadImageAndData() {
+
+
 
         if (filePath != null) {
 
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading...");
+            progressDialog.setTitle("please wait..");
             progressDialog.show();
 
             StorageReference ref = mStorageReference.child("images/" + UUID.randomUUID().toString());
@@ -518,7 +486,49 @@ public class findActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+
+
+                    url[0] = taskSnapshot.getDownloadUrl().toString();
+
                     progressDialog.dismiss();
+
+
+
+
+                    String country = spinner_country.getSelectedItem().toString();
+                    String city = spinner_city.getSelectedItem().toString();
+                    String desc = edittext_desc.getText().toString();
+                    String contact = edittrex_contact.getText().toString();
+
+
+
+                    if (TextUtils.isEmpty(desc)) {
+
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_desc_text), Toast.LENGTH_SHORT).show();
+
+
+                    } else if (TextUtils.isEmpty(contact)) {
+
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_contact_text), Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+
+                        Log.d("image", url[0]);
+
+                        String id = mDatabaseReference.push().getKey();
+
+
+                        DataModel data = new DataModel(url[0], country, city, desc, contact);
+
+
+                        mDatabaseReference.child(id).setValue(data);
+
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_upploaded_text), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
 
 
                 }
@@ -537,12 +547,13 @@ public class findActivity extends AppCompatActivity {
 
                     double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
 
-                    progressDialog.setMessage("Shared" + (int) progress + "%");
+                    progressDialog.setMessage("please wait  " + (int) progress + "%");
 
                 }
             });
 
         }
+        
 
     }
 
