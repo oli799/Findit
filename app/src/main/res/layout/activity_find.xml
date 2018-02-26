@@ -53,8 +53,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:inputType="text"
-                    android:nextFocusLeft="@id/editText_Description"
-                    android:nextFocusUp="@id/editText_Description"
+                    android:nextFocusLeft="@id/editText_Name"
+                    android:nextFocusUp="@id/editText_Name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name_text"
                     android:layout_marginLeft="16dp"/>

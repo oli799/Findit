@@ -154,9 +154,31 @@ public class findActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                String desc = editText_desc.getText().toString();
+                String contact = editText_contact.getText().toString();
+                String name = editText_name.getText().toString();
+
+
                 if (InternetStatus.getInstance(getApplicationContext()).isOnline()) {
 
-                    uploadImageAndData();
+                    if (TextUtils.isEmpty(desc)) {
+
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_desc_text), Toast.LENGTH_SHORT).show();
+
+
+                    } else if (TextUtils.isEmpty(contact)) {
+
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_contact_text), Toast.LENGTH_SHORT).show();
+
+                    } else if (TextUtils.isEmpty(name)) {
+
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_name_text), Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+
+                        uploadImageAndData();
+                    }
 
 
                 } else {
