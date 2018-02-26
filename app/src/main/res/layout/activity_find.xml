@@ -22,6 +22,7 @@
                 android:focusableInTouchMode="true">
 
 
+
                 <TextView
                     android:id="@+id/textView_Title"
                     android:layout_width="wrap_content"
@@ -35,14 +36,39 @@
                     android:layout_marginLeft="16dp"/>
 
                 <TextView
+                    android:id="@+id/name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_Title"
+                    android:layout_marginLeft="16dp"/>
+
+                <EditText
+                    android:id="@+id/editText_Name"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:inputType="text"
+                    android:nextFocusLeft="@id/editText_Description"
+                    android:nextFocusUp="@id/editText_Description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/name_text"
+                    android:layout_marginLeft="16dp"/>
+
+
+                <TextView
                     android:id="@+id/textView_Country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="60dp"
                     android:text="@string/country"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_Title"
+                    app:layout_constraintTop_toBottomOf="@+id/editText_Name"
                     android:layout_marginLeft="16dp"/>
 
                 <Spinner

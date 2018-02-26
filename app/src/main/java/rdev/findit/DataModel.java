@@ -11,17 +11,19 @@ public class DataModel {
     private String City;
     private String Desc;
     private String Contact;
+    private String Name;
 
 
     public DataModel() {
     }
 
-    public DataModel(String id, String country, String city, String desc, String contact) {
+    public DataModel(String id, String country, String city, String desc, String contact,String name) {
         Id = id;
         Country = country;
         City = city;
         Desc = desc;
         Contact = contact;
+        Name = name;
 
     }
 
@@ -66,5 +68,11 @@ public class DataModel {
         Contact = contact;
     }
 
+    public String getName() {
+        return Name;
+    }
 
+    public void setName(String name) {
+        Name = name;
+    }
 }

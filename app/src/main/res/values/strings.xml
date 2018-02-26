@@ -14,15 +14,17 @@
 
     //findActivity
     <string name="title">Where and What you find?</string>
-    <string name="country">Country</string>
-    <string name="city">City</string>
+    <string name="country">Where did you find? (Country)</string>
+    <string name="city">Where did you find? (City)</string>
     <string name="description">Write a little description about what you find</string>
     <string name="contact">Your contact details</string>
     <string name="button">Send</string>
     <string name="photo">Select image from gallery</string>
+    <string name="name">What did you find?</string>
 
     <string name="toast_desc_text">You need to write something in the description field!</string>
     <string name="toast_contact_text">You need to write something in the contact field!</string>
+    <string name="toast_name_text">You need to write something in the name field!</string>
     <string name="toast_upploaded_text">Your post is shared successfully!</string>
 
     <string name="toast_no_internet_connected">"Oops! No WiFi/Mobile Networks Connected!"</string>

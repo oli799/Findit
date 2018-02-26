@@ -66,8 +66,9 @@ public class findActivity extends AppCompatActivity {
     private Spinner spinner_city;
     private Button button_send;
     private Button button_photo_upload;
-    private EditText edittext_desc;
-    private EditText edittrex_contact;
+    private EditText editText_desc;
+    private EditText editText_contact;
+    private EditText editText_name;
     private List<String> spinnerArray;
     private List<String> spinnerCounryArray;
     private DatabaseReference mDatabaseReference;
@@ -89,8 +90,9 @@ public class findActivity extends AppCompatActivity {
         spinner_city = (Spinner) findViewById(R.id.spinner_city);
         button_send = (Button) findViewById(R.id.button_Send);
         button_photo_upload = (Button) findViewById(R.id.button_select_image);
-        edittext_desc = (EditText) findViewById(R.id.editText_Description);
-        edittrex_contact = (EditText) findViewById(R.id.editText_Contact);
+        editText_desc = (EditText) findViewById(R.id.editText_Description);
+        editText_contact = (EditText) findViewById(R.id.editText_Contact);
+        editText_name = (EditText) findViewById(R.id.editText_Name);
 
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("posts");
@@ -493,8 +495,9 @@ public class findActivity extends AppCompatActivity {
 
                     String country = spinner_country.getSelectedItem().toString();
                     String city = spinner_city.getSelectedItem().toString();
-                    String desc = edittext_desc.getText().toString();
-                    String contact = edittrex_contact.getText().toString();
+                    String desc = editText_desc.getText().toString();
+                    String contact = editText_contact.getText().toString();
+                    String name = editText_name.getText().toString();
 
 
                     if (TextUtils.isEmpty(desc)) {
@@ -506,6 +509,10 @@ public class findActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), getString(R.string.toast_contact_text), Toast.LENGTH_SHORT).show();
 
+                    } else if (TextUtils.isEmpty(name)) {
+
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_name_text), Toast.LENGTH_SHORT).show();
+
                     } else {
 
 
@@ -514,7 +521,7 @@ public class findActivity extends AppCompatActivity {
                         String id = mDatabaseReference.push().getKey();
 
 
-                        DataModel data = new DataModel(url[0], country, city, desc, contact);
+                        DataModel data = new DataModel(url[0], country, city, desc, contact,name);
 
 
                         mDatabaseReference.child(id).setValue(data);
