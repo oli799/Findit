@@ -75,6 +75,7 @@ public class findActivity extends AppCompatActivity {
     private StorageReference mStorageReference;
     private Uri filePath;
     private String[] url = new String[1];
+    private Boolean isClicked = false;
 
 
     //VÁLTOZÓK
@@ -146,6 +147,23 @@ public class findActivity extends AppCompatActivity {
         //SPINNER_COUNTRY_ADAPTER_KIVÁLASZTÁS_ÉRZÉKELÉS_ÉS_ASYNC_MEGHÍVÁSA
 
 
+        //GOMBNYOMÁSRA AZ ADAT KIVÁLASZTÁSA
+
+
+        button_photo_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                isClicked = true;
+                chooseImage();
+
+            }
+        });
+
+
+        //GOMBNYOMÁSRA AZ ADAT KIVÁLASZTÁSA
+
+
         //GOMBNYOMÁSRA AZ ADAT FELTÉTELE FIREBASE-BA
 
 
@@ -174,9 +192,11 @@ public class findActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), getString(R.string.toast_name_text), Toast.LENGTH_SHORT).show();
 
+                    } else if (!isClicked) {
+
+                        Toast.makeText(getApplicationContext(),getString(R.string.toast_image_text),Toast.LENGTH_SHORT).show();
+
                     } else {
-
-
                         uploadImageAndData();
                     }
 
@@ -194,21 +214,6 @@ public class findActivity extends AppCompatActivity {
 
             }
         });
-
-        //GOMBNYOMÁSRA AZ ADAT KIVÁLASZTÁSA
-
-
-        button_photo_upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                chooseImage();
-
-            }
-        });
-
-
-        //GOMBNYOMÁSRA AZ ADAT KIVÁLASZTÁSA
 
 
     }
@@ -543,7 +548,7 @@ public class findActivity extends AppCompatActivity {
                         String id = mDatabaseReference.push().getKey();
 
 
-                        DataModel data = new DataModel(url[0], country, city, desc, contact,name);
+                        DataModel data = new DataModel(url[0], country, city, desc, contact, name);
 
 
                         mDatabaseReference.child(id).setValue(data);
