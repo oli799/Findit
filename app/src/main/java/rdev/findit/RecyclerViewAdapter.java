@@ -40,7 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         holder.post_title.setText((CharSequence) mData.get(position).getName());
-        holder.post_Image.setImageResource(Integer.parseInt(mData.get(position).getId()));
+        holder.post_Image.setImageResource(mData.get(position).getKep());
 
     }
 

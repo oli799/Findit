@@ -13,12 +13,22 @@ public class DataModel {
     private String Contact;
     private String Name;
 
+    public int getKep() {
+        return Kep;
+    }
+
+    public void setKep(int kep) {
+        Kep = kep;
+    }
+
+    private int Kep;
+
 
     public DataModel() {
     }
 
-    public DataModel(String id, String desc, String contact, String name){
-        Id = id;
+    public DataModel(int kep, String desc, String contact, String name){
+        Kep = kep;
         Desc = desc;
         Contact = contact;
         Name = name;
@@ -83,3 +93,5 @@ public class DataModel {
         Name = name;
     }
 }
+
+
