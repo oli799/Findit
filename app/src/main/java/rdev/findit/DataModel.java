@@ -17,6 +17,13 @@ public class DataModel {
     public DataModel() {
     }
 
+    public DataModel(String id, String desc, String contact, String name){
+        Id = id;
+        Desc = desc;
+        Contact = contact;
+        Name = name;
+    }
+
     public DataModel(String id, String country, String city, String desc, String contact,String name) {
         Id = id;
         Country = country;
@@ -26,6 +33,7 @@ public class DataModel {
         Name = name;
 
     }
+
 
 
     public String getId() {
@@ -55,7 +63,6 @@ public class DataModel {
     public String getDesc() {
         return Desc;
     }
-
     public void setDesc(String desc) {
         Desc = desc;
     }
