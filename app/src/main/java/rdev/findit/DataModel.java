@@ -12,6 +12,8 @@ public class DataModel {
     private String Desc;
     private String Contact;
     private String Name;
+    private int Kep;
+
 
     public int getKep() {
         return Kep;
@@ -21,7 +23,7 @@ public class DataModel {
         Kep = kep;
     }
 
-    private int Kep;
+
 
 
     public DataModel() {

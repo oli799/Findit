@@ -1,6 +1,7 @@
 package rdev.findit;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.post_title.setText((CharSequence) mData.get(position).getName());
         holder.post_Image.setImageResource(mData.get(position).getKep());
 
+        //CLICK_LISTENER
+
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        //CLICK_LISTENER
+
     }
 
     @Override
@@ -53,6 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView post_title;
         ImageView post_Image;
+        CardView mCardView;
 
 
         public MyViewHolder(View itemView) {
@@ -61,6 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             post_title = (TextView) itemView.findViewById(R.id.waht_is_it_text);
             post_Image = (ImageView) itemView.findViewById(R.id.image_card);
+            mCardView = (CardView) itemView.findViewById(R.id.cardview_id);
 
         }
 

@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".lostList">
         </activity>
+        <activity android:name=".PostActivity">
+        </activity>
     </application>
 
 </manifest>
