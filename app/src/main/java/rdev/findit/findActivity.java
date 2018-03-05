@@ -56,7 +56,7 @@ import java.util.UUID;
 
 public class findActivity extends AppCompatActivity {
 
-    private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
+    public final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
     private static final int GALERY_INTENT = 5;
 
 

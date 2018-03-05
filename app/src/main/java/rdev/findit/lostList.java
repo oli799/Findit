@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,35 +27,44 @@ public class lostList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost_list);
 
-
-
-
         elosPost = new ArrayList<>();
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
-        elosPost.add(new DataModel (R.drawable.ic_launcher_background, "Description", "Contact", "Name"));
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference();
+        databaseReference.child("posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //get all of the children
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+                for (DataSnapshot child : children) {
+
+                    DataModel post = child.getValue(DataModel.class);
+
+                    elosPost.add(new DataModel(R.drawable.ic_launcher_background,
+                            post.getDesc().toString(),post.getContact().toString(),post.getName().toString()));
+                }
 
 
 
-        RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, elosPost);
-        myrv.setLayoutManager(new GridLayoutManager(this, 2));
-        myrv.setAdapter(myAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this,elosPost);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setAdapter(recyclerViewAdapter);
+
+
 
 
     }
