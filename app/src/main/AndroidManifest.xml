@@ -23,13 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".findActivity">
+        <activity android:name=".findActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".lostActivity">
+        <activity android:name=".lostActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".lostList">
+        <activity android:name=".lostList"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".PostActivity">
+        <activity android:name=".PostActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
