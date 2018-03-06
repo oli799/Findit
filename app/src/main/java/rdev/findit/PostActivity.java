@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class PostActivity extends AppCompatActivity {
 
 
@@ -32,15 +34,17 @@ public class PostActivity extends AppCompatActivity {
         String title = intent.getExtras().getString("PostTitle");
         String desc = intent.getExtras().getString("PostDesc");
         String conatct = intent.getExtras().getString("PostContact");
-        int image = intent.getExtras().getInt("PostImage");
+        String image = intent.getExtras().getString("PostImage");
 
 
         textTitle.setText(title);
         textDesc.setText(desc);
         textContact.setText(conatct);
-        imageImage.setImageResource(image);
-
-
+        Picasso.with(getApplicationContext())
+                .load(image)
+                .fit()
+                .centerCrop()
+                .into(imageImage);
 
 
     }

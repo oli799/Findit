@@ -43,7 +43,7 @@ public class lostList extends AppCompatActivity {
 
                     DataModel post = child.getValue(DataModel.class);
 
-                    elosPost.add(new DataModel(R.drawable.ic_launcher_background,
+                    elosPost.add(new DataModel(post.getId().toString(),
                             post.getDesc().toString(),post.getContact().toString(),post.getName().toString()));
                 }
 

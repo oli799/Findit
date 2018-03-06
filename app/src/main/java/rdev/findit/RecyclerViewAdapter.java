@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -42,7 +44,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         holder.post_title.setText((CharSequence) mData.get(position).getName());
-        holder.post_Image.setImageResource(mData.get(position).getKep());
+        Picasso.with(mContext)
+                .load(mData.get(position).getId())
+                .fit()
+                .centerCrop()
+                .into(holder.post_Image);
 
         //CLICK_LISTENER
 
@@ -54,7 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("PostTitle",mData.get(position).getName());
                 intent.putExtra("PostDesc",mData.get(position).getDesc());
                 intent.putExtra("PostContact",mData.get(position).getContact());
-                intent.putExtra("PostImage",mData.get(position).getKep());
+                intent.putExtra("PostImage",mData.get(position).getId());
                 mContext.startActivity(intent);
 
 

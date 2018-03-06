@@ -29,8 +29,8 @@ public class DataModel {
     public DataModel() {
     }
 
-    public DataModel(int kep, String desc, String contact, String name){
-        Kep = kep;
+    public DataModel(String id, String desc, String contact, String name){
+        Id = id;
         Desc = desc;
         Contact = contact;
         Name = name;

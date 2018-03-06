@@ -7,12 +7,16 @@
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/tools"
     tools:context="rdev.findit.lostList"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_id"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         >
 
 
