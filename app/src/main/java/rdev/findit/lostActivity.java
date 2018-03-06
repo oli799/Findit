@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -131,6 +132,8 @@ public class lostActivity extends AppCompatActivity {
 
             this.dialog.setMessage("please wait..");
             this.dialog.show();
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         }
 
@@ -223,6 +226,7 @@ public class lostActivity extends AppCompatActivity {
 
             if (dialog.isShowing()) {
                 dialog.dismiss();
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
         }
 
@@ -239,6 +243,8 @@ public class lostActivity extends AppCompatActivity {
 
             this.dialog.setMessage("please wait..");
             this.dialog.show();
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         }
 
@@ -346,6 +352,7 @@ public class lostActivity extends AppCompatActivity {
 
             if (dialog.isShowing()) {
                 dialog.dismiss();
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
 
 

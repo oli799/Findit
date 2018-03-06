@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -230,6 +231,7 @@ public class findActivity extends AppCompatActivity {
 
             this.dialog.setMessage("please wait..");
             this.dialog.show();
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         }
 
@@ -322,6 +324,7 @@ public class findActivity extends AppCompatActivity {
 
             if (dialog.isShowing()) {
                 dialog.dismiss();
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
         }
 
@@ -338,6 +341,7 @@ public class findActivity extends AppCompatActivity {
 
             this.dialog.setMessage("please wait..");
             this.dialog.show();
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         }
 
@@ -445,6 +449,7 @@ public class findActivity extends AppCompatActivity {
 
             if (dialog.isShowing()) {
                 dialog.dismiss();
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             }
 
 
@@ -508,6 +513,7 @@ public class findActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("please wait..");
             progressDialog.show();
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
             StorageReference ref = mStorageReference.child("images/" + UUID.randomUUID().toString());
             ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -518,6 +524,7 @@ public class findActivity extends AppCompatActivity {
                     url[0] = taskSnapshot.getDownloadUrl().toString();
 
                     progressDialog.dismiss();
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
 
                     String country = spinner_country.getSelectedItem().toString();
@@ -566,6 +573,7 @@ public class findActivity extends AppCompatActivity {
                 public void onFailure(@NonNull Exception e) {
 
                     progressDialog.dismiss();
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                     Log.d("Image", "Problem with image Upload!" + e.getMessage());
 
                 }

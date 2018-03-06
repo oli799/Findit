@@ -12,16 +12,6 @@ public class DataModel {
     private String Desc;
     private String Contact;
     private String Name;
-    private int Kep;
-
-
-    public int getKep() {
-        return Kep;
-    }
-
-    public void setKep(int kep) {
-        Kep = kep;
-    }
 
 
 
