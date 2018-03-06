@@ -67,7 +67,10 @@ public class lostActivity extends AppCompatActivity {
 
         if (status.getInstance(getApplicationContext()).isOnline()) {
 
+
+
             new JSONTaskCountry().execute(URL);
+
 
 
         } else {
@@ -87,7 +90,12 @@ public class lostActivity extends AppCompatActivity {
             spinnerLostCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
                     new JSONTaskCity().execute(URL);
+
+
                 }
 
                 @Override
@@ -132,8 +140,8 @@ public class lostActivity extends AppCompatActivity {
 
             this.dialog.setMessage("please wait..");
             this.dialog.show();
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            this.dialog.setCanceledOnTouchOutside(false);
+
 
         }
 
@@ -226,7 +234,7 @@ public class lostActivity extends AppCompatActivity {
 
             if (dialog.isShowing()) {
                 dialog.dismiss();
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
             }
         }
 
@@ -243,8 +251,8 @@ public class lostActivity extends AppCompatActivity {
 
             this.dialog.setMessage("please wait..");
             this.dialog.show();
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            this.dialog.setCanceledOnTouchOutside(false);
+
 
         }
 
@@ -352,7 +360,7 @@ public class lostActivity extends AppCompatActivity {
 
             if (dialog.isShowing()) {
                 dialog.dismiss();
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
             }
 
 
