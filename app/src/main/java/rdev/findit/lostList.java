@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class lostList extends AppCompatActivity {
 
     private List<DataModel> elosPost;
+    private TextView noPost;
 
 
     @Override
@@ -28,6 +30,9 @@ public class lostList extends AppCompatActivity {
         setContentView(R.layout.activity_lost_list);
 
         elosPost = new ArrayList<>();
+        noPost = (TextView) findViewById(R.id.textView_noPost);
+
+
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -36,6 +41,7 @@ public class lostList extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+
                 //get all of the children
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
@@ -43,10 +49,28 @@ public class lostList extends AppCompatActivity {
 
                     DataModel post = child.getValue(DataModel.class);
 
-                    elosPost.add(new DataModel(post.getId(),
-                            post.getDesc().toString(),post.getContact().toString(),post.getName().toString()));
-                }
 
+                    if (lostActivity.City.toString().equals(post.getCity())
+                            && lostActivity.Country.toString().equals(post.getCountry())) {
+
+
+
+                        elosPost.add(new DataModel(post.getId(),
+                                post.getDesc().toString(), post.getContact().toString(), post.getName().toString()));
+
+                    }
+
+                    if(elosPost.isEmpty()){
+                        noPost.setVisibility(TextView.VISIBLE);
+                    }
+                    else {
+                        noPost.setVisibility(TextView.GONE);
+                    }
+
+
+
+
+                }
 
 
             }
@@ -59,16 +83,15 @@ public class lostList extends AppCompatActivity {
 
 
 
+
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this,elosPost);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, elosPost);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(recyclerViewAdapter);
 
 
-
-
     }
-
 
 
 }

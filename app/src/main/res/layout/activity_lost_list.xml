@@ -10,18 +10,35 @@
     android:padding="8dp"
     android:layout_gravity="center_horizontal"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     >
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_id"
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
         >
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true">
 
+        </android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:id="@+id/textView_noPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:text="@string/no_post"
+            android:visibility="gone"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
 
 </LinearLayout>

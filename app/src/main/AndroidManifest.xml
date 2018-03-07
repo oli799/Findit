@@ -30,6 +30,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".lostList"
+            android:screenOrientation="portrait"
             >
         </activity>
         <activity android:name=".PostActivity"

@@ -11,6 +11,10 @@
     <string name="text_button_lost" translatable="false">OK!</string>
     //lostActivity
 
+    //lostList
+    <string name="no_post">Sorry, nobody posted in this city yet!</string>
+    //lostList
+
 
     //findActivity
     <string name="title">Where and What you find?</string>
@@ -31,6 +35,9 @@
     <string name="toast_no_internet_connected">"Oops! No WiFi/Mobile Networks Connected!"</string>
     <string name="toast_connect_to_internet">Please connect your device to the internet!</string>
     //findActivity
+
+
+
 
 
 </resources>

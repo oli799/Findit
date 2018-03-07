@@ -34,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         View view;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
-        view = mInflater.inflate(R.layout.cardview_item,parent,false);
+        view = mInflater.inflate(R.layout.cardview_item, parent, false);
 
 
         return new MyViewHolder(view);
@@ -56,11 +56,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(mContext,PostActivity.class);
-                intent.putExtra("PostTitle",mData.get(position).getName());
-                intent.putExtra("PostDesc",mData.get(position).getDesc());
-                intent.putExtra("PostContact",mData.get(position).getContact());
-                intent.putExtra("PostImage",mData.get(position).getId());
+                Intent intent = new Intent(mContext, PostActivity.class);
+                intent.putExtra("PostTitle", mData.get(position).getName());
+                intent.putExtra("PostDesc", mData.get(position).getDesc());
+                intent.putExtra("PostContact", mData.get(position).getContact());
+                intent.putExtra("PostImage", mData.get(position).getId());
                 mContext.startActivity(intent);
 
 
@@ -76,7 +76,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mData.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView post_title;
         ImageView post_Image;

@@ -106,11 +106,7 @@ public class findActivity extends AppCompatActivity {
         if (InternetStatus.getInstance(getApplicationContext()).isOnline()) {
 
 
-
-
             new JSONTaskCountry().execute(URL);
-
-
 
 
         } else {
@@ -132,7 +128,6 @@ public class findActivity extends AppCompatActivity {
             spinner_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
 
 
                     new JSONTaskCity().execute(URL);
@@ -206,7 +201,7 @@ public class findActivity extends AppCompatActivity {
 
                     } else if (!isClicked) {
 
-                        Toast.makeText(getApplicationContext(),getString(R.string.toast_image_text),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_image_text), Toast.LENGTH_SHORT).show();
 
                     } else {
                         uploadImageAndData();
@@ -234,7 +229,6 @@ public class findActivity extends AppCompatActivity {
     private class JSONTaskCountry extends AsyncTask<String, String, List<String>> {
 
         private ProgressDialog dialog = new ProgressDialog(findActivity.this);
-
 
 
         @Override
@@ -530,8 +524,7 @@ public class findActivity extends AppCompatActivity {
             progressDialog.setCanceledOnTouchOutside(false);
 
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                    ,WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-
+                    , WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
 
             StorageReference ref = mStorageReference.child("images/" + UUID.randomUUID().toString());
@@ -544,7 +537,6 @@ public class findActivity extends AppCompatActivity {
 
                     progressDialog.dismiss();
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-
 
 
                     String country = spinner_country.getSelectedItem().toString();

@@ -47,8 +47,8 @@ public class lostActivity extends AppCompatActivity {
     private List<String> spinnerCounryArray;
     private List<String> spinnerArray;
 
-    public String City;
-    public String Country;
+    public static String City;
+    public static String Country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +68,7 @@ public class lostActivity extends AppCompatActivity {
         if (status.getInstance(getApplicationContext()).isOnline()) {
 
 
-
             new JSONTaskCountry().execute(URL);
-
 
 
         } else {
@@ -90,7 +88,6 @@ public class lostActivity extends AppCompatActivity {
             spinnerLostCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
 
 
                     new JSONTaskCity().execute(URL);
