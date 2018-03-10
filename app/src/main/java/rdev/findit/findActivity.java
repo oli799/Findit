@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -57,7 +58,7 @@ import java.util.UUID;
 
 public class findActivity extends AppCompatActivity {
 
-    public final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
+    public final String URL = "https://raw.githubusercontent.com/meMo-Minsk/all-countries-and-cities-json/master/countries.json";
     private static final int GALERY_INTENT = 5;
 
 
@@ -69,6 +70,10 @@ public class findActivity extends AppCompatActivity {
     private Button button_photo_upload;
     private EditText editText_desc;
     private EditText editText_contact;
+    private ImageView checkName;
+    private ImageView checkImage;
+    private ImageView checkDesc;
+    private ImageView checkContact;
     private EditText editText_name;
     private List<String> spinnerArray;
     private List<String> spinnerCounryArray;
@@ -95,6 +100,10 @@ public class findActivity extends AppCompatActivity {
         editText_desc = (EditText) findViewById(R.id.editText_Description);
         editText_contact = (EditText) findViewById(R.id.editText_Contact);
         editText_name = (EditText) findViewById(R.id.editText_Name);
+        checkName = (ImageView) findViewById(R.id.imageView_checkMark_name);
+        checkImage = (ImageView) findViewById(R.id.imageView_checkMark_image);
+        checkDesc = (ImageView) findViewById(R.id.imageView_checkMark_desc);
+        checkContact = (ImageView) findViewById(R.id.imageView_chackMark_contact);
 
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("posts");
@@ -164,6 +173,7 @@ public class findActivity extends AppCompatActivity {
                 isClicked = true;
                 chooseImage();
 
+
             }
         });
 
@@ -203,9 +213,26 @@ public class findActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), getString(R.string.toast_image_text), Toast.LENGTH_SHORT).show();
 
+
                     } else {
                         uploadImageAndData();
                     }
+
+
+
+                    /*}else if(!TextUtils.isEmpty(desc)){
+
+                        checkDesc.setImageResource(R.drawable.checkmark1);
+
+                    }else if(!TextUtils.isEmpty(name)){
+
+                        checkName.setImageResource(R.drawable.checkmark1);
+
+                    }else if(!TextUtils.isEmpty(contact)){
+
+                        checkContact.setImageResource(R.drawable.checkmark1);
+
+                    }*/
 
 
                 } else {
@@ -510,6 +537,8 @@ public class findActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, GALERY_INTENT);
+
+        checkImage.setImageResource(R.drawable.checkmark1);
 
     }
 

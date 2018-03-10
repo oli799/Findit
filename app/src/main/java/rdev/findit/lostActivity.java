@@ -40,6 +40,8 @@ public class lostActivity extends AppCompatActivity {
 
     private final String URL = "https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json";
 
+    private final String URL2 = "https://raw.githubusercontent.com/meMo-Minsk/all-countries-and-cities-json/master/countries.json";
+
 
     private Spinner spinnerLostCountry;
     private Spinner spinnerLostCity;
@@ -68,7 +70,7 @@ public class lostActivity extends AppCompatActivity {
         if (status.getInstance(getApplicationContext()).isOnline()) {
 
 
-            new JSONTaskCountry().execute(URL);
+            new JSONTaskCountry().execute(URL2);
 
 
         } else {
@@ -90,7 +92,7 @@ public class lostActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-                    new JSONTaskCity().execute(URL);
+                    new JSONTaskCity().execute(URL2);
 
 
                 }
