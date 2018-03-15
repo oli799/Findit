@@ -228,7 +228,7 @@ public class findActivity extends AppCompatActivity {
 
                         checkName.setImageResource(R.drawable.checkmark1);
 
-                    }else if(!TextUtils.isEmpty(contact)){
+                    }else if(!TextUt ils.isEmpty(contact)){
 
                         checkContact.setImageResource(R.drawable.checkmark1);
 
