@@ -133,6 +133,7 @@ public class lostActivity extends AppCompatActivity {
         private ProgressDialog dialog = new ProgressDialog(lostActivity.this);
 
 
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
