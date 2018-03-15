@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rdev.findit.PostActivity">
+    tools:context="rdev.findit.PostActivity"
+    android:background="@color/color_blue">
 
 
     <android.support.v4.widget.NestedScrollView

@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+
 public class lostList extends AppCompatActivity {
 
     private List<DataModel> elosPost;
@@ -54,7 +56,6 @@ public class lostList extends AppCompatActivity {
                             && lostActivity.Country.toString().equals(post.getCountry())) {
 
 
-
                         elosPost.add(new DataModel(post.getId(),
                                 post.getDesc().toString(), post.getContact().toString(), post.getName().toString()));
 
@@ -82,13 +83,10 @@ public class lostList extends AppCompatActivity {
         });
 
 
-
-
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, elosPost);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setAdapter(new AlphaInAnimationAdapter(recyclerViewAdapter));
 
 
     }
