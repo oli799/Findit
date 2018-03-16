@@ -1,16 +1,28 @@
 package rdev.findit;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+import ru.dimorinny.floatingtextbutton.FloatingTextButton;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private Button lostButton;
-    private Button findButton;
+    private FloatingTextButton lostButton;
+    private FloatingTextButton findButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        lostButton = (Button) findViewById(R.id.lostButton);
-        findButton = (Button) findViewById(R.id.findButton);
+        lostButton = (FloatingTextButton) findViewById(R.id.lostButton);
+        findButton = (FloatingTextButton) findViewById(R.id.findButton);
+
 
 
 
@@ -39,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        final ImageView img = new ImageView(this);
+
+
+
 
 
     }

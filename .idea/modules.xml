@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Findit.iml" filepath="$PROJECT_DIR$/Findit.iml" />
-      <module fileurl="file://F:\java programok\Findit\Finditt.iml" filepath="F:\java programok\Findit\Finditt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Finditt.iml" filepath="$PROJECT_DIR$/Finditt.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://F:\java programok\Findit\app\app.iml" filepath="F:\java programok\Findit\app\app.iml" />
     </modules>
   </component>
 </project>

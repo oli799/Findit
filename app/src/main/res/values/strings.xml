@@ -34,6 +34,7 @@
 
     <string name="toast_no_internet_connected">"Oops! No WiFi/Mobile Networks Connected!"</string>
     <string name="toast_connect_to_internet">Please connect your device to the internet!</string>
+    <string name="todo">TODO</string>
     //findActivity
 
 
