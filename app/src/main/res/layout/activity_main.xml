@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_white"
-    tools:context="rdev.findit.MainActivity"
-    >
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:id="@+id/mainLayout"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:background="@color/color_white"
+                                             tools:context="rdev.findit.MainActivity">
 
-    <FrameLayout
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/background"/>
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"/>
 
 
     <ImageView
@@ -30,52 +24,79 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/lostButton"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toTopOf="@+id/lost_button_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"/>
 
-    <Button
-        android:id="@+id/findButton"
+
+    <com.dd.ShadowLayout
+        android:id="@+id/find_button_shadow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/roboto_light"
-        android:paddingBottom="23dp"
-        android:paddingLeft="65dp"
-        android:paddingRight="65dp"
-        android:paddingTop="23dp"
-        android:text="@string/main_findButton_text"
-        app:layout_constraintBottom_toTopOf="@+id/lostButton"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/lost_button_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:sl_dx="0dp"
+        app:sl_dy="0dp"
+        app:sl_shadowColor="#AA000000"
+        app:sl_shadowRadius="4dp"
+        >
+
+        <Button
+            android:id="@+id/findButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:fontFamily="@font/roboto_light"
+            android:paddingBottom="23dp"
+            android:paddingLeft="65dp"
+            android:paddingRight="65dp"
+            android:paddingTop="23dp"
+            android:text="@string/main_findButton_text"
 
 
-        />
+            />
+    </com.dd.ShadowLayout>
 
-    <Button
-        android:id="@+id/lostButton"
+
+    <com.dd.ShadowLayout
+        android:id="@+id/lost_button_shadow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/roboto_light"
-        android:paddingBottom="23dp"
-        android:paddingLeft="65dp"
-        android:paddingRight="65dp"
-        android:paddingTop="23dp"
-        android:text="@string/main_lostButton_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:sl_dx="0dp"
+        app:sl_dy="0dp"
+        app:sl_shadowColor="#AA000000"
+        app:sl_shadowRadius="4dp"
+        android:layout_marginTop="16dp">
 
-        />
+        <Button
+            android:id="@+id/lostButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:fontFamily="@font/roboto_light"
+            android:paddingBottom="23dp"
+            android:paddingLeft="65dp"
+            android:paddingRight="65dp"
+            android:paddingTop="23dp"
+            android:text="@string/main_lostButton_text"
+
+
+            />
+    </com.dd.ShadowLayout>
 
 
 </android.support.constraint.ConstraintLayout>
