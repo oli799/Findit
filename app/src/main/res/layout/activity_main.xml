@@ -3,21 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rdev.findit.MainActivity"
     android:background="@color/color_white"
-    android:id="@+id/mainLayout"
+    tools:context="rdev.findit.MainActivity"
     >
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/background"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/background"/>
     </FrameLayout>
 
 
@@ -35,44 +36,46 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"/>
 
-    <ru.dimorinny.floatingtextbutton.FloatingTextButton
+    <Button
         android:id="@+id/findButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        app:floating_background_color="@color/color_orange"
+        android:background="@drawable/button"
         android:fontFamily="@font/roboto_light"
-        app:floating_title="@string/main_findButton_text"
-        app:floating_title_color="@android:color/black"
+        android:paddingBottom="23dp"
+        android:paddingLeft="65dp"
+        android:paddingRight="65dp"
+        android:paddingTop="23dp"
+        android:text="@string/main_findButton_text"
         app:layout_constraintBottom_toTopOf="@+id/lostButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:floating_left_icon="@drawable/find_icon"
 
 
         />
 
-    <ru.dimorinny.floatingtextbutton.FloatingTextButton
+    <Button
         android:id="@+id/lostButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        app:floating_background_color="@color/color_orange"
+        android:background="@drawable/button"
         android:fontFamily="@font/roboto_light"
-        app:floating_title="@string/main_lostButton_text"
-        app:floating_title_color="@android:color/black"
+        android:paddingBottom="23dp"
+        android:paddingLeft="65dp"
+        android:paddingRight="65dp"
+        android:paddingTop="23dp"
+        android:text="@string/main_lostButton_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:floating_left_icon="@drawable/lost_icon"
 
         />
-
-
 
 
 </android.support.constraint.ConstraintLayout>
