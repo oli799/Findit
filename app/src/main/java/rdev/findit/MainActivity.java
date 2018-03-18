@@ -1,14 +1,18 @@
 package rdev.findit;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -21,25 +25,27 @@ import ru.dimorinny.floatingtextbutton.FloatingTextButton;
 public class MainActivity extends AppCompatActivity {
 
 
-    private FloatingTextButton lostButton;
-    private FloatingTextButton findButton;
+    private Button lostButton;
+    private Button findButton;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        lostButton = (FloatingTextButton) findViewById(R.id.lostButton);
-        findButton = (FloatingTextButton) findViewById(R.id.findButton);
-
+        lostButton = (Button) findViewById(R.id.lostButton);
+        findButton = (Button) findViewById(R.id.findButton);
 
 
 
         lostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,lostActivity.class);
+                view.startAnimation(buttonClick);
+                Intent intent = new Intent(MainActivity.this, lostActivity.class);
                 startActivity(intent);
             }
         });
@@ -48,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         findButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,findActivity.class);
+                view.startAnimation(buttonClick);
+                Intent intent = new Intent(MainActivity.this, findActivity.class);
                 startActivity(intent);
             }
         });
@@ -60,4 +67,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }
