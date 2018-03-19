@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -48,9 +49,12 @@ public class lostActivity extends AppCompatActivity {
     private Button buttonLostOk;
     private List<String> spinnerCounryArray;
     private List<String> spinnerArray;
+    private AlphaAnimation buttonClick;
 
     public static String City;
     public static String Country;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +62,12 @@ public class lostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lost);
 
 
+        buttonClick = new AlphaAnimation(1F,0.8F);
+
         spinnerLostCountry = (Spinner) findViewById(R.id.spinner_lost_country);
         spinnerLostCity = (Spinner) findViewById(R.id.spinner_lost_city);
         buttonLostOk = (Button) findViewById(R.id.button_lost_ok);
+
 
         findActivity.InternetStatus status = new findActivity.InternetStatus();
 
@@ -116,6 +123,9 @@ public class lostActivity extends AppCompatActivity {
         buttonLostOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                view.startAnimation(buttonClick);
+
                 Country = spinnerLostCountry.getSelectedItem().toString();
                 City = spinnerLostCity.getSelectedItem().toString();
 

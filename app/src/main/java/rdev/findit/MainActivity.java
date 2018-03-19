@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private Button findButton;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
