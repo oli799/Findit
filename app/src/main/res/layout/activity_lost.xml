@@ -8,6 +8,24 @@
     tools:context="rdev.findit.lostActivity"
     >
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"
+        android:adjustViewBounds="true"/>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_orange"
+        android:alpha="0.5"/>
+
+
+
+
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -16,14 +34,17 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
         android:textAlignment="center"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"/>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:id="@+id/clayout">
+        android:id="@+id/clayout"
+        >
 
 
 
@@ -34,14 +55,14 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
-            android:text="@string/country"
+            android:text="@string/lost_country"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clayout"/>
+            app:layout_constraintTop_toBottomOf="@+id/clayout" />
 
         <Spinner
             android:id="@+id/spinner_lost_country"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -50,7 +71,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_lost_country">
+            app:layout_constraintTop_toBottomOf="@+id/textView_lost_country"
+            android:textAlignment="center"
+            android:gravity="center"
+
+
+
+            >
 
         </Spinner>
 
@@ -61,14 +88,15 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="60dp"
-            android:text="@string/city"
+            android:text="@string/lost_city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_lost_country"/>
+            app:layout_constraintTop_toBottomOf="@+id/spinner_lost_country"
+            />
 
         <Spinner
             android:id="@+id/spinner_lost_city"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -77,7 +105,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_lost_city">
+            app:layout_constraintTop_toBottomOf="@+id/textView_lost_city"
+            android:textAlignment="center"
+            android:gravity="center"
+            >
 
         </Spinner>
 

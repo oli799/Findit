@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="rdev.findit.PostActivity"
+    android:background="@color/color_orange"
     >
+
 
 
     <android.support.v4.widget.NestedScrollView
@@ -14,6 +16,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:padding="10dp">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,9 +28,10 @@
             <ImageView
                 android:layout_width="125dp"
                 android:layout_height="170dp"
-                android:background="#2d2d2d"
+                android:background="@drawable/image_view_border"
                 android:id="@+id/postImage"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                />
 
 
             <TextView
@@ -34,9 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="What is It?"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto_light"/>
 
             <TextView
                 android:id="@+id/postContact"
@@ -45,15 +51,21 @@
                 android:text="Contact"
                 android:background="#ededed"
                 android:padding="8dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                />
 
             <TextView
                 android:id="@+id/postDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:textSize="16sp"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/roboto"
                 />
 
         </LinearLayout>

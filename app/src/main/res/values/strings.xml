@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Findit</string>
+    <string name="app_name">Find It</string>
 
     //MainActivity
     <string name="main_lostButton_text">I am lost it</string>
@@ -7,8 +7,10 @@
     <string name="heading">Find It</string>
 
     //lostActivity
-    <string name="title_lost">Please select where you lost it!</string>
+    <string name="title_lost">Please choose where you lost it!</string>
     <string name="text_button_lost" translatable="false">OK!</string>
+    <string name="lost_country">Where did you lost it? (Country)</string>
+    <string name="lost_city">Where did you lost it? (City)</string>
     //lostActivity
 
     //lostList
@@ -18,18 +20,18 @@
 
     //findActivity
     <string name="title">Where and What you find?</string>
-    <string name="country">Where did you find? (Country)</string>
-    <string name="city">Where did you find? (City)</string>
+    <string name="country">Where did you find it? (Country)</string>
+    <string name="city">Where did you find it? (City)</string>
     <string name="description">Write a little description about what you find</string>
     <string name="contact">Your contact details</string>
     <string name="button">Send</string>
-    <string name="photo">Select image from gallery</string>
+    <string name="photo">Click here to choose image from gallery!</string>
     <string name="name">What did you find?</string>
 
     <string name="toast_desc_text">You need to write something in the description field!</string>
     <string name="toast_contact_text">You need to write something in the contact field!</string>
     <string name="toast_name_text">You need to write something in the name field!</string>
-    <string name="toast_image_text">You need to add at least 1 photo about what you find!</string>
+    <string name="toast_image_text">You need to add a photo about what you find!</string>
     <string name="toast_upploaded_text">Your post is shared successfully!</string>
 
     <string name="toast_no_internet_connected">"Oops! No WiFi/Mobile Networks Connected!"</string>

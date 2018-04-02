@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -51,6 +53,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -67,13 +70,9 @@ public class findActivity extends AppCompatActivity {
     private Spinner spinner_country;
     private Spinner spinner_city;
     private Button button_send;
-    private Button button_photo_upload;
+    private TextView button_photo_upload;
     private EditText editText_desc;
     private EditText editText_contact;
-    private ImageView checkName;
-    private ImageView checkImage;
-    private ImageView checkDesc;
-    private ImageView checkContact;
     private EditText editText_name;
     private List<String> spinnerArray;
     private List<String> spinnerCounryArray;
@@ -82,6 +81,7 @@ public class findActivity extends AppCompatActivity {
     private Uri filePath;
     private String[] url = new String[1];
     private Boolean isClicked = false;
+    private AlphaAnimation buttonClicked;
 
 
     //VÁLTOZÓK
@@ -96,14 +96,13 @@ public class findActivity extends AppCompatActivity {
         spinner_country = (Spinner) findViewById(R.id.spinner_country);
         spinner_city = (Spinner) findViewById(R.id.spinner_city);
         button_send = (Button) findViewById(R.id.button_Send);
-        button_photo_upload = (Button) findViewById(R.id.button_select_image);
+        button_photo_upload = (TextView) findViewById(R.id.button_select_image);
         editText_desc = (EditText) findViewById(R.id.editText_Description);
         editText_contact = (EditText) findViewById(R.id.editText_Contact);
         editText_name = (EditText) findViewById(R.id.editText_Name);
-        checkName = (ImageView) findViewById(R.id.imageView_checkMark_name);
-        checkImage = (ImageView) findViewById(R.id.imageView_checkMark_image);
-        checkDesc = (ImageView) findViewById(R.id.imageView_checkMark_desc);
-        checkContact = (ImageView) findViewById(R.id.imageView_chackMark_contact);
+
+        buttonClicked = new AlphaAnimation(1F,0.8F);
+
 
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("posts");
@@ -170,6 +169,8 @@ public class findActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                view.startAnimation(buttonClicked);
+
                 isClicked = true;
                 chooseImage();
 
@@ -187,6 +188,8 @@ public class findActivity extends AppCompatActivity {
         button_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                view.startAnimation(buttonClicked);
 
 
                 String desc = editText_desc.getText().toString();
@@ -307,6 +310,8 @@ public class findActivity extends AppCompatActivity {
                 }
 
                 //GET_JSON_OBJECT_NAMES
+
+                Collections.sort(spinnerCounryArray,String.CASE_INSENSITIVE_ORDER);
 
 
                 return spinnerCounryArray;
@@ -433,6 +438,8 @@ public class findActivity extends AppCompatActivity {
                     }
                 }
 
+                Collections.sort(spinnerArray,String.CASE_INSENSITIVE_ORDER);
+
                 return spinnerArray;
 
 
@@ -538,7 +545,6 @@ public class findActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, GALERY_INTENT);
 
-        checkImage.setImageResource(R.drawable.checkmark1);
 
     }
 

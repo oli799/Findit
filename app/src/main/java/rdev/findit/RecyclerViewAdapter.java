@@ -43,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        holder.post_title.setText((CharSequence) mData.get(position).getName());
+        holder.post_title.setText((CharSequence) mData.get(position).getName().toUpperCase());
         Picasso.with(mContext)
                 .load(mData.get(position).getId())
                 .fit()

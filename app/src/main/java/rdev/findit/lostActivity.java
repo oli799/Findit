@@ -32,6 +32,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -45,7 +46,7 @@ public class lostActivity extends AppCompatActivity {
 
 
     private Spinner spinnerLostCountry;
-    private Spinner spinnerLostCity;
+    public Spinner spinnerLostCity;
     private Button buttonLostOk;
     private List<String> spinnerCounryArray;
     private List<String> spinnerArray;
@@ -194,6 +195,8 @@ public class lostActivity extends AppCompatActivity {
 
                 //GET_JSON_OBJECT_NAMES
 
+                Collections.sort(spinnerCounryArray,String.CASE_INSENSITIVE_ORDER);
+
 
                 return spinnerCounryArray;
 
@@ -318,6 +321,9 @@ public class lostActivity extends AppCompatActivity {
                         spinnerArray.add(parentArray.getString(i));
                     }
                 }
+
+                Collections.sort(spinnerArray,String.CASE_INSENSITIVE_ORDER);
+
 
                 return spinnerArray;
 

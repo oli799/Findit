@@ -3,6 +3,7 @@ package rdev.findit;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class lostList extends AppCompatActivity {
 
     private List<DataModel> elosPost;
     private TextView noPost;
+    private TextView lostListCity;
 
 
     @Override
@@ -33,6 +35,12 @@ public class lostList extends AppCompatActivity {
 
         elosPost = new ArrayList<>();
         noPost = (TextView) findViewById(R.id.textView_noPost);
+        lostListCity = (TextView) findViewById(R.id.lost_list_city);
+
+
+
+        lostListCity.setText(lostActivity.City.toString().toUpperCase());
+
 
 
 
@@ -84,12 +92,17 @@ public class lostList extends AppCompatActivity {
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_id);
+        //LinearLayoutManager layout = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
+
+
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, elosPost);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(new AlphaInAnimationAdapter(recyclerViewAdapter));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        //recyclerView.setLayoutManager(layout);
+        recyclerView.setAdapter(recyclerViewAdapter);
 
 
     }
+
 
 
 }

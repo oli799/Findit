@@ -39,7 +39,7 @@ public class PostActivity extends AppCompatActivity {
 
         textTitle.setText(title);
         textDesc.setText(desc);
-        textContact.setText(conatct);
+        textContact.setText("Contact: " + conatct);
         Picasso.with(getApplicationContext())
                 .load(image)
                 .fit()

@@ -8,19 +8,39 @@
     android:layout_height="match_parent"
     >
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/background"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.5"
+                android:background="@color/color_orange"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="142dp" />
 
 
             <android.support.constraint.ConstraintLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:context="rdev.findit.lostActivity"
                 android:focusable="true"
-                android:focusableInTouchMode="true">
+                android:focusableInTouchMode="true"
+
+                >
+
+
 
 
 
@@ -33,6 +53,7 @@
                     android:text="@string/title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/roboto_light"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
                     android:layout_marginLeft="16dp"/>
 
@@ -159,87 +180,46 @@
 
                 <Button
                     android:id="@+id/button_Send"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="171dp"
+                    android:layout_height="48dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/button"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button_select_image"/>
+                    app:layout_constraintTop_toBottomOf="@+id/button_select_image"
+                    android:background="@drawable/btn_send"/>
 
-                <Button
+                <TextView
                     android:id="@+id/button_select_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:clickable="true"
                     android:text="@string/photo"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/color_white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editText_Contact"
-                    android:layout_marginLeft="16dp"/>
-
-                <ImageView
-                    android:id="@+id/imageView_checkMark_image"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/button_select_image"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/editText_Contact"
-                    app:layout_constraintTop_toTopOf="@+id/button_select_image"
-                    app:srcCompat="@drawable/checkmark2" />
-
-                <ImageView
-                    android:id="@+id/imageView_checkMark_name"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/editText_Name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/editText_Name"
-                    app:layout_constraintTop_toTopOf="@+id/editText_Name"
-                    app:srcCompat="@drawable/checkmark2"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginLeft="0dp" />
+                    android:textAlignment="center"
+                    android:gravity="center"/>
 
-                <ImageView
-                    android:id="@+id/imageView_checkMark_desc"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/editText_Description"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/editText_Description"
-                    app:layout_constraintTop_toTopOf="@+id/editText_Description"
-                    app:srcCompat="@drawable/checkmark2" />
 
-                <ImageView
-                    android:id="@+id/imageView_chackMark_contact"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/editText_Contact"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/editText_Contact"
-                    app:layout_constraintTop_toTopOf="@+id/editText_Contact"
-                    app:srcCompat="@drawable/checkmark2" />
+
+
 
 
             </android.support.constraint.ConstraintLayout>
 
 
-        </LinearLayout>
+        </FrameLayout>
+    
     </ScrollView>
 

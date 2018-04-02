@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
+
         lostButton = (Button) findViewById(R.id.lostButton);
         findButton = (Button) findViewById(R.id.findButton);
 
